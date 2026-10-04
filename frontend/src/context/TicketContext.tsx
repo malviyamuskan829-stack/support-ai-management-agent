@@ -176,7 +176,8 @@ export const TicketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     showToast(`🤖 AI Co-Pilot analyzing ${targetTicket.ticketNumber} via OpenRouter...`);
 
     try {
-      const res = await fetch('http://localhost:4000/api/ai/investigate', {
+      const apiBase = import.meta.env.VITE_API_BASE_URL || '/api';
+      const res = await fetch(`${apiBase}/ai/investigate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(targetTicket),
